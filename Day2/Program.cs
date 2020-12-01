@@ -74,7 +74,7 @@ namespace Employee
 				if (value == " ")
 				{
 					Console.WriteLine("invalid");
-					name = value;
+					//name = value;
 				}
 				else
 					name = value;
