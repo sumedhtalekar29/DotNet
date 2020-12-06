@@ -4,44 +4,83 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment4_2
+namespace Employee
 {
-    class Program
-    {
-        static void Main()
-        {
-            Console.WriteLine("enter no of batches");
-            int batch = Convert.ToInt32(Console.ReadLine());
-            int[][] arr = new int[batch][];
-            for (int i = 0; i < batch; i++)
-            {
-                Console.WriteLine("enter the batch size");
-                int batchSize = Convert.ToInt32(Console.ReadLine());
-                arr[i] = new int[batchSize];
-            }
+	class Program
+	{
+		
+
+		static void Main(string[] args)
+		{
+			Console.WriteLine("How many employee's Deatils you want to store");
+			int i = Convert.ToInt32(Console.ReadLine());
+			Employee[] e = new Employee[i];
+
+			for (int j = 0; j < e.Length; j++)
+			{
+				Console.WriteLine("Enter employee name");
+				string name = Console.ReadLine();
+				Console.WriteLine("Enter employee number");
+				int empNo = Convert.ToInt32(Console.ReadLine());
+				Console.WriteLine("Enter employee salary");
+				decimal salary = Convert.ToDecimal(Console.ReadLine());
+				Employee e1 = new Employee();
+				e1.Set(empNo, name, salary);
+				e[j] = e1;
+				//e1.show();
+			}
 
 
-            for (int i = 0; i < arr.Length; i++)
-            {
-                for (int j = 0; j < arr[i].Length; j++)
-                {
-                    Console.Write("enter marks for students [{0}][{1}] : ", i, j);
-                    arr[i][j] = Convert.ToInt32(Console.ReadLine());
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine();
-            Console.WriteLine();
-            for (int i = 0; i < arr.Length; i++)
-            {
-                for (int j = 0; j < arr[i].Length; j++)
-                {
-                    Console.WriteLine("marks of students {0},{1} is {2}  ", i, j, arr[i][j]);
+			Console.WriteLine("enter empno");
+			int search = Convert.ToInt32(Console.ReadLine());
+			for (int y = 0; y < e.Length; y++)
+			{
 
-                }
-                Console.WriteLine();
-            }
-            Console.ReadLine();
-        }
-    }
+				if (e[y].empNo == search)
+				{
+					
+					e[y].show();
+				}
+
+			}
+
+			decimal max = e[0].salary;
+
+			for (int x = 0; x < e.Length; x++)
+			{
+
+				if (e[x].salary > max)
+				{
+					max = e[x].salary;
+				}
+
+			}
+
+			Console.WriteLine("highest salary"+max);
+
+			Console.ReadLine();
+		}
+
+		public class Employee
+		{
+			public int empNo;
+			public string name;
+			public decimal salary;
+
+			public void Set(int empNo, string name, decimal salary)
+			{
+				this.empNo = empNo;
+				this.name = name;
+				this.salary = salary;
+			}
+
+			public void show()
+			{
+				Console.WriteLine(empNo);
+				Console.WriteLine(name);
+				Console.WriteLine(salary);
+			}
+		}
+	}
+
 }
